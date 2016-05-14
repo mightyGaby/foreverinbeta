@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "Why Art is vital to STEAM"
+title:  "how do we improve race relations?"
 date:   2016-05-14 13:48:16 -0500
-type: why
-categories: opinion
+type: how
+categories: question
 ---
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 

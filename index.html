@@ -6,8 +6,31 @@ layout: default
 
   <h1 class="page-heading">Posts</h1>
 
-  <ul class="post-list">
+  <div class="select">
+    <input type="radio" name="type-group" value="why" class="why">why</input>
+    <input type="radio" name="type-group" value="how" class="how">how</input>
+    <input type="radio" name="type-group" value="all" class="all" checked>all</input>
+  </div>
+
+  <span>question</span><input type="range" min="0" max="2" value="1" id="fader" step="1" oninput="outputUpdate(value)"><span>opinion</span>
+
+{% assign sorted_cats = site.categories | sort %}
+{% for category in sorted_cats reversed %}
+<ul class="post-list {{category[0] | uri_escape | downcase }}">
+  <h2>{{category[0] | capitalize}}</h2>
+  {% assign sorted_posts = category[1] %}
+      {% for post in sorted_posts | group_by:"type"  %}
+      <li class="post {{post.type}}">
+        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+      </li>
+  {% endfor %}
+</ul>
+{% endfor %}
+<!--
+  <ul class="post-list why">
     {% for post in site.posts %}
+      {% if post.type == "why" %}
       <li>
         <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
@@ -15,9 +38,27 @@ layout: default
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
         </h2>
       </li>
+      {% endif %}
     {% endfor %}
   </ul>
+
+  <ul class="post-list how">
+    {% for post in site.posts %}
+      {% if post.type == "how" %}
+      <li>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        </h2>
+      </li>
+      {% endif %}
+    {% endfor %}
+  </ul> -->
 
   <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
 
 </div>
+
+<!-- javascripts -->
+<script src="js/index.js"></script>
