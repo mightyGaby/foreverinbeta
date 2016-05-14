@@ -1,6 +1,6 @@
 var viewPostByType = function(){
   $('input[type="radio"]').on('click', function(){
-    var filterType = $(this).attr('class');
+    var filterType = $(this).attr('id');
     var className = '.' + filterType;
     $('.post').not(className).hide();
     $('.post' + className).show();
@@ -8,7 +8,7 @@ var viewPostByType = function(){
 }
 
 var viewAll = function(){
-  $('.all').on('click', function(){
+  $('#all').on('click', function(){
     $('.post').show();
   });
 }

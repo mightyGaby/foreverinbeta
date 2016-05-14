@@ -1,0 +1,13 @@
+{% assign sorted_cats = site.categories | sort %}
+{% for category in sorted_cats reversed %}
+<ul class="post-list {{category[0] | uri_escape | downcase }}">
+  <h2>{{category[0] | capitalize}}</h2>
+  {% assign sorted_posts = category[1] %}
+      {% for post in sorted_posts | group_by:"type"  %}
+      <li class="post {{post.type}}">
+        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+      </li>
+  {% endfor %}
+</ul>
+{% endfor %}
